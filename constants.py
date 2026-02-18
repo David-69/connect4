@@ -5,3 +5,6 @@ SCREEN_HEIGHT = 720
 # Grid:
 GRID_SIZE_X = 7
 GRID_SIZE_Y = 7
+
+# Squares:
+SQUARE_SIZE = 16
