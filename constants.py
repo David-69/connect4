@@ -1,0 +1,7 @@
+# System:
+SCREEN_WIDTH = 1280
+SCREEN_HEIGHT = 720
+
+# Grid:
+GRID_SIZE_X = 7
+GRID_SIZE_Y = 7
