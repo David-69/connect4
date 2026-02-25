@@ -1,13 +1,20 @@
 import pygame
+from object import *
 from constants import *
+from square import *
+from string import ascii_lowercase
 
-class Cell():
+class Cell(Object):
 
-    def __init__(self, x, y, grid_position):
-        self.position = pygame.Vector2(x,y)
-        self.grid_position = grid_position
+    def __init__(self, x, y, label):
         
-    def draw(self, screen):
-        pygame.draw.rect(screen, "white", (self.position.x, self.position.y, SQUARE_SIZE, SQUARE_SIZE))
-        print(f"Cell placed at {self.position}")
-        pass
+        super().__init__(x, y)
+
+        self.squares = {}
+        self.label = label
+    
+    def create_squares(self):
+        
+        for i in range(GRID_SIZE_Y + 1):
+            self.squares[ascii_lowercase[i]] = Square(self.position.x, self.position.y + (SQUARE_DIST * i), "empty")
+

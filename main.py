@@ -1,5 +1,6 @@
 import pygame
-from constants import *
+from constants import * 
+from square import *   
 from cell import *
 
 def main():
@@ -8,11 +9,12 @@ def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     cells = pygame.sprite.Group()
+    squares = pygame.sprite.Group()
 
 
     # Group Allocation:
     Cell.containers = (cells, updatable, drawable)
-
+    Square.containers = (squares, updatable, drawable)
 
     # Load Pygame:
     pygame.init()
@@ -21,9 +23,8 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
-    cell = Cell(200, 150, "1A")
-
-
+    cell = Cell(200, 150, "1")
+    cell.create_squares()
 
     #Game Loop:
     while True:
