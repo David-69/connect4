@@ -16,5 +16,9 @@ class Cell(Object):
     def create_squares(self):
         
         for i in range(GRID_SIZE_Y + 1):
-            self.squares[ascii_lowercase[i]] = Square(self.position.x, self.position.y + (SQUARE_DIST * i), "empty")
+            self.squares[ascii_lowercase[i]] = Square(self.position.x, self.position.y + (SQUARE_DIST * i), "red")
 
+    def add_label(self, screen):
+        font = pygame.font.SysFont("Arial", 16)
+        text = font.render(self.label, True, WHITE)
+        screen.blit(text, (self.position.x + (SQUARE_SIZE // 2) - (text.get_width() // 2), self.position.y - 20))

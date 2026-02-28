@@ -1,5 +1,6 @@
 import pygame
 from constants import * 
+from grid import *
 from square import *   
 from cell import *
 
@@ -11,11 +12,13 @@ def main():
     drawable = pygame.sprite.Group()
     cells = pygame.sprite.Group()
     squares = pygame.sprite.Group()
+    grids = pygame.sprite.Group()
 
 
     # Group Allocation:
     Cell.containers = (cells, updatable, drawable)
     Square.containers = (squares, updatable, drawable)
+    Grid.containers = (grids, updatable, drawable)
 
     # Load Pygame:
     pygame.init()
@@ -24,8 +27,8 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
-    cell = Cell(200, 150, "1")
-    cell.create_squares()
+    grid = Grid(150, 150)
+    grid.create_cells()
 
     #Game Loop:
     while True:
@@ -48,6 +51,9 @@ def main():
 
         for sprite in drawable:
             sprite.draw(screen)
+
+        for cell in cells:
+            cell.add_label(screen)
 
         # Frame cycling I think?
         pygame.display.flip()
