@@ -15,7 +15,7 @@ class Cell(Object):
     
     def create_squares(self):
         
-        for i in range(GRID_SIZE_Y + 1):
+        for i in range(GRID_SIZE_Y):
             self.squares[ascii_lowercase[i]] = Square(self.position.x, self.position.y + (SQUARE_DIST * i), "red")
 
     def add_label(self, screen):

@@ -16,11 +16,11 @@ class Grid(Object):
 
         self.position.y = 150
         
-        for i in range(GRID_SIZE_X + 1):
-            self.cells[str(i + 1)] = Cell(self.position.x + (SQUARE_DIST * i), self.position.y, str(i + 1))
-            self.cells[str(i + 1)].create_squares()
+        for i in range(1, GRID_SIZE_X + 1):
+            self.cells[str(i)] = Cell(self.position.x + (SQUARE_DIST * (i - 1)), self.position.y, str(i))
+            self.cells[str(i)].create_squares()
             
     def draw(self, screen):
-        pygame.draw.rect(screen, WHITE, (self.position.x - 3, self.position.y - 3, (SQUARE_DIST * (GRID_SIZE_Y)) + 6, (SQUARE_DIST * (GRID_SIZE_X)) + 6), LINE_WIDTH)
+        pygame.draw.rect(screen, WHITE, (self.position.x - 12, self.position.y - 12, (SQUARE_DIST * GRID_SIZE_X) + 6, (SQUARE_DIST * GRID_SIZE_Y) + 6), LINE_WIDTH)
     
 
