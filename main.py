@@ -3,6 +3,7 @@ from constants import *
 from grid import *
 from square import *   
 from cell import *
+from arrow import *
 
 
 def main():
@@ -13,12 +14,14 @@ def main():
     cells = pygame.sprite.Group()
     squares = pygame.sprite.Group()
     grids = pygame.sprite.Group()
+    arrows = pygame.sprite.Group()
 
 
     # Group Allocation:
     Cell.containers = (cells, updatable, drawable)
     Square.containers = (squares, updatable, drawable)
     Grid.containers = (grids, updatable, drawable)
+    Arrow.containers = (arrows, updatable, drawable)
 
     # Load Pygame:
     pygame.init()
@@ -27,13 +30,15 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
+    
+    # Create Grid:
     grid = Grid(150, 150)
     grid.create_cells()
 
     #Game Loop:
     while True:
         # Logs:
-        ## A good place to put logs if you need them maybe?
+        ## A good place to put logs.
 
 
         # Exit game when window closes:
@@ -54,8 +59,9 @@ def main():
 
         for cell in cells:
             cell.add_label(screen)
+            cell.screen = screen
 
-        # Frame cycling I think?
+        # Frame cycling.
         pygame.display.flip()
         
         # Rate:

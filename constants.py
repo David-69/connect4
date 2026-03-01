@@ -1,10 +1,8 @@
+import pygame
+
 # System:
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
-
-# Grid:
-GRID_SIZE_X = 7
-GRID_SIZE_Y = 6
 
 # Squares:
 SQUARE_SIZE = 30
@@ -15,3 +13,9 @@ LINE_WIDTH = 1
 RED = (230, 53, 53)
 YELLOW = (255, 213, 61)
 WHITE = (186, 186, 186)
+GREY = (100, 100, 100)
+
+# Grid:
+GRID_SIZE_X = 7
+GRID_SIZE_Y = 6
+GRID_OUTLINE = pygame.Vector2(((SQUARE_DIST * (GRID_SIZE_X - 1) + SQUARE_SIZE)) + 40, ((SQUARE_DIST * (GRID_SIZE_Y - 1) + SQUARE_SIZE)) + 40)
