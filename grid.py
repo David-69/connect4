@@ -63,3 +63,4 @@ class Grid(Object):
                 if self.cells[cell].selected == True:
                     self.cells[cell].drop_piece("red")
                     self.cells[cell].deselect()
+                    
