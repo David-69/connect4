@@ -86,6 +86,7 @@ class Grid(Object):
         if keys[pygame.K_RETURN]:
             for cell in self.cells:
                 if self.cells[cell].selected == True:
-                    self.cells[cell].drop_piece(self.set_turn()[0])
+                    self.cells[cell].drop_piece(self.current_turn[0])
+                    self.set_turn()
                     self.cells[cell].deselect()
                     
