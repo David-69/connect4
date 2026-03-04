@@ -1,4 +1,5 @@
 import pygame
+import random
 from object import *
 from square import *
 from constants import *
@@ -11,6 +12,13 @@ class Grid(Object):
         super().__init__(x, y)
 
         self.cells = {}
+        self.turns = {
+            0 : ("empty", WHITE),
+            1 : ("red", RED),
+            2 : ("yellow", YELLOW)
+        }
+        self.current_turn = self.turns[0]
+        self.set_turn()
         
     
     def create_cells(self):
@@ -20,11 +28,28 @@ class Grid(Object):
         for i in range(1, GRID_SIZE_X + 1):
             self.cells[str(i)] = Cell(self.position.x + (SQUARE_DIST * (i - 1)), self.position.y, str(i))
             self.cells[str(i)].create_squares()
+    
+    def set_turn(self):
+        if self.current_turn[0] == "empty":
+            self.current_turn = self.turns[random.randint(1, 2)]
+            return self.current_turn
+        elif self.current_turn[0] == "red":
+            self.current_turn = self.turns[2]
+            return self.current_turn
+        elif self.current_turn[0] == "yellow":
+            self.current_turn = self.turns[1]
+            return self.current_turn
+        
+    def display_info(self, screen):
+        font = pygame.font.SysFont("Arial", 14)
+        text = font.render(f"It's {self.current_turn[0]}'s turn", True, self.current_turn[1])
+        screen.blit(text, (self.position.x - 20, self.position.y - 90))
         
             
     def draw(self, screen):
         pygame.draw.rect(screen, GREY, (self.position.x - 20, self.position.y - 20, GRID_OUTLINE.x, GRID_OUTLINE.y), LINE_WIDTH + 1, (SQUARE_SIZE // 2))
-    
+        self.display_info(screen)
+
     def update(self, dt):
         keys = pygame.key.get_pressed()
 
@@ -61,6 +86,6 @@ class Grid(Object):
         if keys[pygame.K_RETURN]:
             for cell in self.cells:
                 if self.cells[cell].selected == True:
-                    self.cells[cell].drop_piece("red")
+                    self.cells[cell].drop_piece(self.set_turn()[0])
                     self.cells[cell].deselect()
                     
